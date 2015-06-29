@@ -1,5 +1,7 @@
 import _JCEHash
 
+__doc__ = "MD4"
+
 class MD4Hash(_JCEHash.JCEHashWrapper):
     oid = '\x06\x08*\x86H\x86\xf7\r\x02\x04'
     digest_size = 16

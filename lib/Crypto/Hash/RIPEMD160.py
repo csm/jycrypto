@@ -1,5 +1,7 @@
 import _JCEHash
 
+__doc__ = "RIPEMD-160"
+
 class RIPEMD160Hash(_JCEHash.JCEHashWrapper):
     oid = '\x06\x05+$\x03\x02\x01'
     digest_size = 20

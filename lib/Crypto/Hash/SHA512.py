@@ -1,5 +1,7 @@
 import _JCEHash
 
+__doc__ = "SHA-512"
+
 class SHA512Hash(_JCEHash.JCEHashWrapper):
     oid = '\x06\t`\x86H\x01e\x03\x04\x02\x03'
     digest_size = 64
