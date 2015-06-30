@@ -9,6 +9,7 @@ class SHA256Hash(_JCEHash.JCEHashWrapper):
 
     def __init__(self, data=None):
         super(SHA256Hash, self).__init__("SHA-256")
+        self.name = algname
         if data is not None:
             self.update(data)
 

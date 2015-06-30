@@ -1,5 +1,7 @@
 from java.security import MessageDigest
 from itertools import imap
+import jarray
+from Crypto.Util._str2bytes import _str2bytes
 
 """
 JCA MessageDigest wrapper
@@ -35,4 +37,5 @@ class JCEHashWrapper(object):
         return ''.join(map(lambda b: '%02x' % ord(b), self.digest()))
 
     def update(self, data):
-        self.__hash.update(bytearray(imap(ord, data)))
+        self.__hash.update(_str2bytes(data))
+

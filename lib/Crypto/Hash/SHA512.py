@@ -9,6 +9,7 @@ class SHA512Hash(_JCEHash.JCEHashWrapper):
 
     def __init__(self, data=None):
         super(SHA512Hash, self).__init__("SHA-512")
+        self.name = algname
         if data is not None:
             self.update(data)
 
@@ -17,3 +18,4 @@ def new(data=None):
 
 digest_size = 64
 algname = "SHA512"
+block_size = 128

@@ -7,6 +7,8 @@ def _extendseq(seq, pos, count):
 
 class XORCipher(object):
     def __init__(self, key, *args, **kwargs):
+        if len(key) > 32:
+            raise ValueError('max key size is 32 bytes')
         self.__pos = 0
         self.__key = key
 

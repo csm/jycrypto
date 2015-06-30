@@ -9,6 +9,7 @@ class SHA384Hash(_JCEHash.JCEHashWrapper):
 
     def __init__(self, data=None):
         super(SHA384Hash, self).__init__("SHA-384")
+        self.name = algname
         if data is not None:
             self.update(data)
 
@@ -17,3 +18,4 @@ def new(data=None):
 
 digest_size = 48
 algname = "SHA384"
+block_size = 128

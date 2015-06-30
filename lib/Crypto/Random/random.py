@@ -1,3 +1,37 @@
+# -*- coding: utf-8 -*-
+#
+#  Random/random.py : Strong alternative for the standard 'random' module
+#
+# Written in 2008 by Dwayne C. Litzenberger <dlitz@dlitz.net>
+#
+# ===================================================================
+# The contents of this file are dedicated to the public domain.  To
+# the extent that dedication to the public domain is not available,
+# everyone is granted a worldwide, perpetual, royalty-free,
+# non-exclusive license to exercise all rights associated with the
+# contents of this file for any purpose whatsoever.
+# No rights are reserved.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+# BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+# ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# ===================================================================
+
+"""A cryptographically strong version of Python's standard "random" module."""
+
+__revision__ = "$Id$"
+__all__ = ['StrongRandom', 'getrandbits', 'randrange', 'randint', 'choice', 'shuffle', 'sample']
+
+from Crypto import Random
+import sys
+if sys.version_info[0] == 2 and sys.version_info[1] == 1:
+    from Crypto.Util.py21compat import *
+
 class StrongRandom(object):
     def __init__(self, rng=None, randfunc=None):
         if randfunc is None and rng is None:
@@ -31,8 +65,8 @@ class StrongRandom(object):
         else:
             raise TypeError("randrange expected at most 3 arguments, got %d" % (len(args),))
         if (not isinstance(start, (int, long))
-            or not isinstance(stop, (int, long))
-            or not isinstance(step, (int, long))):
+                or not isinstance(stop, (int, long))
+                or not isinstance(step, (int, long))):
             raise TypeError("randrange requires integer arguments")
         if step == 0:
             raise ValueError("randrange step argument must not be zero")
@@ -102,4 +136,7 @@ choice = _r.choice
 shuffle = _r.shuffle
 sample = _r.sample
 
+# These are at the bottom to avoid problems with recursive imports
 from Crypto.Util.number import ceil_div, bytes_to_long, long_to_bytes, size
+
+# vim:set ts=4 sw=4 sts=4 expandtab:
